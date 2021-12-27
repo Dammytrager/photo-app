@@ -1,0 +1,31 @@
+<div class="password mt-3">
+  <h4 class="form-heading">
+    Change Password
+  </h4>
+  <hr>
+  <div class="row">
+    <div class="col-lg-3">
+      <p class="text-muted mb-20" style="font-size: 14px">Changing your sign in password is an easy way to keep your account secure.</p>
+    </div>
+    <div class="offset-lg-1 col-lg-7">
+      <div id="settings-password">
+        <%= form_with scope: :password, method: :patch do |form| %>
+
+          <div class="form-group">
+            <%= form.label :current_password %>
+            <%= form.password_field :current_password, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :password %>
+            <%= form.password_field :password, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :password_confirmation %>
+            <%= form.password_field :password_confirmation, class: 'form-control' %>
+          </div>
+          <%= form.submit 'Update', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

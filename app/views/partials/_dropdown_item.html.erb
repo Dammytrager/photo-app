@@ -1,0 +1,22 @@
+<div class="dropdown">
+  <button style="font-size: 14px" class="btn btn-light dropdown-toggle" type="button" id="<%= id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= defined?(dropdown_label) ? dropdown_label : 'Actions' %>
+  </button>
+  <div  class="dropdown-menu" aria-labelledby="<%= id %>">
+    <% items.each do |item| %>
+      <a
+        style="font-size: 14px"
+        <% if item[:id].present? %> id="<%= item[:id] %>" <% end %>
+        class="dropdown-item <%= item[:class] || '' %>"
+        href="#"
+        <% if item[:data].present? %>
+          <% item[:data].each do |data_item, data_value| %>
+            data-<%= data_item %> = "<%= data_value %>"
+          <% end %>
+        <% end %>
+      >
+          <%= item[:label] || '' %>
+      </a>
+    <% end %>
+  </div>
+</div>

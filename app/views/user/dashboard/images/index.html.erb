@@ -1,0 +1,39 @@
+<div class=" mt-3">
+  <div class="d-flex justify-content-between mb-3">
+    <h4 class="form-heading mb-3">Images</h4>
+    <button class="btn btn-sm btn-light add-button" data-toggle="modal" data-target="#add_image_modal">Add Image</button>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Updated at</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% if @images.any? %>
+        <% @images.each_with_index do |image, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= image.name %></td>
+            <td>Created <%= time_ago_in_words(image.created_at) %> ago</td>
+            <td>Updated <%= time_ago_in_words(image.updated_at) %> ago</td>
+            <td>
+              <%= render 'partials/dropdown_item', id: :images_dropdown, items: image_dropdown(image) %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <%= render 'partials/empty_table_data', colspan: 5 %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= render 'image_modal', modal_id: 'image_modal' %>
+<%= render 'add_image_modal', modal_id: 'add_image_modal', model: @image %>
+<%= render 'partials/confirm_modal', modal_id: 'confirm_image_modal' %>
