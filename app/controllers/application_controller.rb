@@ -23,9 +23,12 @@ class ApplicationController < ActionController::Base
     redirect_to redirect_to
   end
 
+  def t(key, **options)
+    I18n.t(key, **options)
+  end
+
   rescue_from ActionController::ParameterMissing do |e|
     parameter = e.param.to_s
-    set_error(I18n.t('errors.parameter_required', parameter: parameter.gsub('_', ' ').capitalize), redirect: false)
-    redirect_to request.referer
+    set_error(t('errors.parameter_required', parameter: parameter.gsub('_', ' ').capitalize))
   end
 end

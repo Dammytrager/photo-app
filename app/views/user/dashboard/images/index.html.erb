@@ -10,7 +10,6 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Created at</th>
-      <th scope="col">Updated at</th>
       <th scope="col">Action</th>
     </tr>
     </thead>
@@ -21,7 +20,6 @@
             <th scope="row"><%= index + 1 %></th>
             <td><%= image.name %></td>
             <td>Created <%= time_ago_in_words(image.created_at) %> ago</td>
-            <td>Updated <%= time_ago_in_words(image.updated_at) %> ago</td>
             <td>
               <%= render 'partials/dropdown_item', id: :images_dropdown, items: image_dropdown(image) %>
             </td>
@@ -35,5 +33,5 @@
 </div>
 
 <%= render 'image_modal', modal_id: 'image_modal' %>
-<%= render 'add_image_modal', modal_id: 'add_image_modal', model: @image %>
+<%= render 'add_image_modal', modal_id: 'add_image_modal' %>
 <%= render 'partials/confirm_modal', modal_id: 'confirm_image_modal' %>

@@ -31,6 +31,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Allows for .env files
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 
+# AWS SDK
+gem "aws-sdk-s3", require: false
+
 # Devise for authentication
 gem 'devise'
 

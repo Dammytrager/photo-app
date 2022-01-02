@@ -19,9 +19,10 @@ module User::DropdownHelper
           target: '#confirm_image_modal',
           toggle: 'modal',
           confirm_modal_title: 'Delete Image?',
-          confirm_action: user_dashboard_images_path,
+          confirm_action: user_dashboard_images_path(image.id),
           confirm_method: :delete,
-          confirm_message: I18n.t('name')
+          confirm_message: t('images.confirm_delete'),
+          confirm_button_label: t('images.delete_label')
         }
       }
     ]

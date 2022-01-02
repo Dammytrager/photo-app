@@ -35,8 +35,14 @@ en:
     password_mismatch: "The password do not match"
     invalid_password: "The password you entered is invalid"
     parameter_required: "%{parameter} is required"
+    image_not_deleted: "Some error occurred when trying to delete the image"
+    action_not_completed: "%{item} could not be %{action}"
   success:
-    password_changed: "Password changed sucessfully"
+    password_changed: "Password changed successfully"
+    imaged_deleted: "Image deleted successfully"
+    action_completed: "%{item} %{action} successfully"
   table:
     empty_data: 'There is no item in the table'
-  name: 'conflict dammy'
+  images:
+    confirm_delete: 'Are you sure you want to delete this image'
+    delete_label: 'Delete'

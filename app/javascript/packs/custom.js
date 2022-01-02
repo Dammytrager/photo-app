@@ -22,10 +22,9 @@ jQuery(function() {
     return result;
   };
 
+  const textTagNames = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'DIV', 'P', 'SPAN', 'LABEL', 'BUTTON']
+
   fillTrigger.on('click', function () {
-
-    const textTagNames = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'DIV', 'P', 'SPAN', 'LABEL']
-
     const fillItems = Object.filter($(this).data(), function (item) {
       if (typeof item !== 'string') return false
       return item.startsWith('fill_');
@@ -35,20 +34,29 @@ jQuery(function() {
       const fillTarget = fillModal.find($(`.${key}`));
       const tagName = fillTarget.prop('tagName');
 
-      if (tagName === 'IMG') fillTarget.attr('src', fillItems[key])
-      else if (tagName === 'INPUT') fillTarget.val(fillItems[key])
-      else if (textTagNames.includes(tagName)) fillTarget.text(fillItems[key])
-      else if (tagName === 'FORM') {
-        if (key.includes('action')) fillTarget.attr('action', fillItems[key])
-        else if (key.includes('method')) fillTarget.append(`<input type="hidden" name="_method" value="_${fillItems[key]}">`)
+      switch (tagName) {
+        case 'FORM':
+          if (key.includes('action')) fillTarget.attr('action', fillItems[key])
+          else if (key.includes('method')) fillTarget.append(`<input type="hidden" name="_method" value="${fillItems[key]}">`)
+          break
+
+        case 'INPUT':
+          fillTarget.val(fillItems[key])
+          break
+
+        case 'IMG':
+          fillTarget.attr('src', fillItems[key])
+          break
+
+        default:
+          fillTarget.text(fillItems[key])
+          break
       }
     }
-
   })
 
 
   confirmTrigger.on('click', function () {
-
     const confirmItems = Object.filter($(this).data(), function (item) {
       if (typeof item !== 'string') return false
       return item.startsWith('confirm_');
@@ -56,14 +64,25 @@ jQuery(function() {
 
     for (let key in confirmItems) {
       const confirmTarget = confirmModal.find($(`.${key}`));
+      const tagName = confirmTarget.prop('tagName');
 
-      if (confirmTarget.prop('tagName') === 'FORM') {
-        if (key.includes('action'))
-          confirmTarget.attr('action', confirmItems[key])
-        else if (key.includes('method'))
-          confirmTarget.append(`<input type="hidden" name="_method" value="${confirmItems[key]}">`)
-      } else {
-        confirmTarget.text(confirmItems[key])
+      switch (tagName) {
+        case 'FORM':
+          if (key.includes('action')) confirmTarget.attr('action', confirmItems[key])
+          else if (key.includes('method')) confirmTarget.append(`<input type="hidden" name="_method" value="${confirmItems[key]}">`)
+          break
+
+        case 'INPUT':
+          confirmTarget.val(confirmItems[key])
+          break
+
+        case 'IMG':
+          confirmTarget.attr('src', confirmItems[key])
+          break
+
+        default:
+          confirmTarget.text(confirmItems[key])
+          break
       }
     }
   })
