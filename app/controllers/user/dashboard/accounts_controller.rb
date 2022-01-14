@@ -9,7 +9,7 @@ class User::Dashboard::AccountsController < User::DashboardController
     password_params = @un_permitted_password_params.permit([:current_password, :password, :password_confirmation])
 
     if user.update_with_password(password_params)
-      sign_in(user, :bypass => true)
+      bypass_sign_in(user)
       return set_success I18n.t('success.password_changed')
     end
 

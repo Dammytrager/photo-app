@@ -40,7 +40,7 @@ gem 'devise'
 # Devise views for authentications
 gem 'devise-bootstrap-views', '~> 1.0'
 
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -52,6 +52,10 @@ group :development, :test do
   gem 'factory_girl_rails'
   # Database cleaner to clean the db after each test
   gem 'database_cleaner'
+  # Faker for generating fake data
+  gem 'faker'
+
+  gem 'rails-controller-testing'
 end
 
 group :development do

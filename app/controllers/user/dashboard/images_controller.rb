@@ -19,7 +19,6 @@ class User::Dashboard::ImagesController < User::DashboardController
 
   def destroy
     begin
-      byebug
       @image = user.images.find(params[:format])
       @image.purge
       set_success(t('success.action_completed', item: 'Image', action: 'deleted'))

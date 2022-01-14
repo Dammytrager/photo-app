@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     namespace :dashboard do
       root to: 'home#index'
+
       get 'images', to: 'images#index'
       post 'images', to: 'images#create'
       delete 'images', to: 'images#destroy'
